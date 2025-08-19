@@ -28,71 +28,72 @@ const Projects = () => {
     });
   };
 
-  const removeProjects = (index) => {
-    const newProjects = [...resumeData.projects];
-    newProjects[index] = newProjects[newProjects.length - 1];
-    newProjects.pop();
-    setResumeData({ ...resumeData, projects: newProjects });
+  const removeProjects = () => {
+    const updated = [...resumeData.projects];
+    updated.pop();
+    setResumeData({ ...resumeData, projects: updated });
   };
 
   return (
-    <div className="flex-col-gap-2">
-      <h2 className="input-title">Projects</h2>
+    <div className="space-y-6 mb-6">
+      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+        Projects
+      </h2>
+
       {resumeData.projects.map((project, index) => (
-        <div key={index} className="f-col">
+        <div key={index} className="flex flex-col gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900 shadow-sm">
           <input
             type="text"
-            placeholder="Project Name"
-            name="name"
-            className="w-full other-input"
-            value={project.name}
+            placeholder="Project Title"
+            name="title"
+            className="pi"
+            value={project.title}
             onChange={(e) => handleProjects(e, index)}
           />
           <input
             type="text"
-            placeholder="Link"
+            placeholder="Project Link"
             name="link"
-            className="w-full other-input"
+            className="pi"
             value={project.link}
             onChange={(e) => handleProjects(e, index)}
           />
           <textarea
-            type="text"
             placeholder="Description"
             name="description"
-            className="w-full other-input h-32"
+            className="pi h-28"
             value={project.description}
             maxLength="250"
             onChange={(e) => handleProjects(e, index)}
           />
           <textarea
-            type="text"
             placeholder="Key Achievements"
             name="keyAchievements"
-            className="w-full other-input h-40"
+            className="pi h-32"
             value={project.keyAchievements}
             onChange={(e) => handleProjects(e, index)}
           />
-          <div className="flex-wrap-gap-2">
+          <div className="flex gap-2">
             <input
               type="date"
-              placeholder="Start Year"
+              placeholder="Start Date"
               name="startYear"
-              className="other-input"
+              className="pi"
               value={project.startYear}
               onChange={(e) => handleProjects(e, index)}
             />
             <input
               type="date"
-              placeholder="End Year"
+              placeholder="End Date"
               name="endYear"
-              className="other-input"
+              className="pi"
               value={project.endYear}
               onChange={(e) => handleProjects(e, index)}
             />
           </div>
         </div>
       ))}
+
       <FormButton
         size={resumeData.projects.length}
         add={addProjects}

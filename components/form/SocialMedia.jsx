@@ -1,18 +1,14 @@
-import FormButton from "./FormButton";
 import React, { useContext } from "react";
 import { ResumeContext } from "../../pages/builder";
+import FormButton from "./FormButton";
 
 const SocialMedia = () => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
 
-  // social media
   const handleSocialMedia = (e, index) => {
-    const newSocialMedia = [...resumeData.socialMedia];
-    newSocialMedia[index][e.target.name] = e.target.value.replace(
-      "https://",
-      ""
-    );
-    setResumeData({ ...resumeData, socialMedia: newSocialMedia });
+    const updated = [...resumeData.socialMedia];
+    updated[index][e.target.name] = e.target.value.replace("https://", "");
+    setResumeData({ ...resumeData, socialMedia: updated });
   };
 
   const addSocialMedia = () => {
@@ -23,32 +19,34 @@ const SocialMedia = () => {
   };
 
   const removeSocialMedia = (index) => {
-    const newSocialMedia = [...resumeData.socialMedia];
-    newSocialMedia[index] = newSocialMedia[newSocialMedia.length - 1];
-    newSocialMedia.pop();
-    setResumeData({ ...resumeData, socialMedia: newSocialMedia });
+    const updated = [...resumeData.socialMedia];
+    updated[index] = updated[updated.length - 1];
+    updated.pop();
+    setResumeData({ ...resumeData, socialMedia: updated });
   };
 
   return (
-    <div className="flex-col-gap-2">
-      <h2 className="input-title">Social Media</h2>
-      {resumeData.socialMedia.map((socialMedia, index) => (
-        <div key={index} className="flex-wrap-gap-2">
+    <div className="space-y-4 mb-6">
+      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+        Social Media
+      </h2>
+      {resumeData.socialMedia.map((social, index) => (
+        <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
             type="text"
-            placeholder="Social Media"
             name="socialMedia"
-            className="other-input"
-            value={socialMedia.socialMedia}
+            placeholder="Social Media (e.g. LinkedIn)"
+            value={social.socialMedia}
             onChange={(e) => handleSocialMedia(e, index)}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
           />
           <input
             type="text"
-            placeholder="Link"
             name="link"
-            className="other-input"
-            value={socialMedia.link}
+            placeholder="Link"
+            value={social.link}
             onChange={(e) => handleSocialMedia(e, index)}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
           />
         </div>
       ))}

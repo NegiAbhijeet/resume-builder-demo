@@ -1,73 +1,81 @@
-import FormButton from "./FormButton";
 import React, { useContext } from "react";
 import { ResumeContext } from "../../pages/builder";
+import FormButton from "./FormButton";
 
 const Education = () => {
-    const { resumeData, setResumeData} = useContext(ResumeContext);
+  const { resumeData, setResumeData } = useContext(ResumeContext);
 
-    const handleEducation = (e, index) => {
-      const newEducation = [...resumeData.education];
-      newEducation[index][e.target.name] = e.target.value;
-      setResumeData({ ...resumeData, education: newEducation });
-    };
-  
-    const addEducation = () => {
-      setResumeData({
-        ...resumeData,
-        education: [
-          ...resumeData.education,
-          { school: "", degree: "", startYear: "", endYear: "" },
-        ],
-      });
-    };
-  
-    const removeEducation = (index) => {
-      const newEducation = [...resumeData.education];
-      newEducation[index] = newEducation[newEducation.length - 1];
-      newEducation.pop();
-      setResumeData({ ...resumeData, education: newEducation });
-    };
-    
-    return (
-      <div className="flex-col-gap-2">
-        <h2 className="input-title">Education</h2>
-        {resumeData.education.map((education, index) => (
-          <div key={index} className="f-col">
+  const handleEducation = (e, index) => {
+    const updated = [...resumeData.education];
+    updated[index][e.target.name] = e.target.value;
+    setResumeData({ ...resumeData, education: updated });
+  };
+
+  const addEducation = () => {
+    setResumeData({
+      ...resumeData,
+      education: [
+        ...resumeData.education,
+        { school: "", degree: "", startYear: "", endYear: "" },
+      ],
+    });
+  };
+
+  const removeEducation = (index) => {
+    const updated = [...resumeData.education];
+    updated[index] = updated[updated.length - 1];
+    updated.pop();
+    setResumeData({ ...resumeData, education: updated });
+  };
+
+  return (
+    <div className="space-y-4 mb-6">
+      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+        Education
+      </h2>
+      {resumeData.education.map((edu, index) => (
+        <div key={index} className="space-y-4">
+          <input
+            type="text"
+            name="school"
+            placeholder="School / University"
+            value={edu.school}
+            onChange={(e) => handleEducation(e, index)}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+          />
+          <input
+            type="text"
+            name="degree"
+            placeholder="Degree / Program"
+            value={edu.degree}
+            onChange={(e) => handleEducation(e, index)}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
-              type="text"
-              placeholder="School"
-              name="school"
-              className="w-full other-input"
-              value={education.school}
-              onChange={(e) => handleEducation(e, index)} />
+              type="date"
+              name="startYear"
+              value={edu.startYear}
+              onChange={(e) => handleEducation(e, index)}
+              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+            />
             <input
-              type="text"
-              placeholder="Degree"
-              name="degree"
-              className="w-full other-input"
-              value={education.degree}
-              onChange={(e) => handleEducation(e, index)} />
-            <div className="flex-wrap-gap-2">
-              <input
-                type="date"
-                placeholder="Start Year"
-                name="startYear"
-                className="other-input"
-                value={education.startYear}
-                onChange={(e) => handleEducation(e, index)} />
-              <input
-                type="date"
-                placeholder="End Year"
-                name="endYear"
-                className="other-input"
-                value={education.endYear}
-                onChange={(e) => handleEducation(e, index)} />
-            </div>
+              type="date"
+              name="endYear"
+              value={edu.endYear}
+              onChange={(e) => handleEducation(e, index)}
+              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+            />
           </div>
-        ))}
-        <FormButton size={resumeData.education.length} add={addEducation} remove={removeEducation} />
-      </div>
-    )
-  }
+        </div>
+      ))}
+      <FormButton
+        size={resumeData.education.length}
+        add={addEducation}
+        remove={removeEducation}
+      />
+    </div>
+  );
+};
 
 export default Education;

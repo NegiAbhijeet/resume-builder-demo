@@ -50,7 +50,7 @@ export default function Builder(props) {
   };
 
   return (
-    <>
+    <div className="">
       <ResumeContext.Provider
         value={{
           resumeData,
@@ -59,35 +59,32 @@ export default function Builder(props) {
           handleChange,
         }}
       >
-    
+
         <div className="f-col gap-4 md:flex-row justify-evenly max-w-7xl md:mx-auto md:h-screen">
           {!formClose && (
-            <form className="p-4 bg-gray-600 exclude-print w-[50%] md:h-screen md:overflow-y-scroll">
-              <LoadUnload/>
+            <form className="w-[60%] h-full overflow-y-auto rounded-lg bg-white dark:bg-gray-900 shadow-lg p-6 space-y-8 transition-all duration-300">
+              {/* <LoadUnload /> */}
               <PersonalInformation />
               <SocialMedia />
               <Summary />
               <Education />
               <WorkExperience />
               <Projects />
-              {
-                resumeData.skills.map((skill, index) => (
-                  <Skill
-                    title={skill.title}
-                    key={index}
-                  />
-                ))
-              }
+              {resumeData.skills.map((skill, index) => (
+                <Skill title={skill.title} key={index} />
+              ))}
               <Language />
               <Certification />
             </form>
+
           )}
           <Preview />
         </div>
+        <div className=""></div>
         <FormCP formClose={formClose} setFormClose={setFormClose} />
         <Print />
       </ResumeContext.Provider>
-    </>
+    </div>
   );
 }
 export { ResumeContext };

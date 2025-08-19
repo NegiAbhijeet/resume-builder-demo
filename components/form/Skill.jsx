@@ -5,77 +5,65 @@ import FormButton from "./FormButton";
 const Skill = ({ title }) => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
 
-  // skills
-  const handleSkill = (e, index, title) => {
-    const newSkills = [
-      ...resumeData.skills.find((skillType) => skillType.title === title)
-        .skills,
-    ];
-    newSkills[index] = e.target.value;
-    setResumeData((prevData) => ({
-      ...prevData,
-      skills: prevData.skills.map((skill) =>
-        skill.title === title ? { ...skill, skills: newSkills } : skill
+  const skillType = resumeData.skills.find((s) => s.title === title);
+
+  const handleSkill = (e, index) => {
+    const updatedSkills = [...skillType.skills];
+    updatedSkills[index] = e.target.value;
+
+    setResumeData((prev) => ({
+      ...prev,
+      skills: prev.skills.map((s) =>
+        s.title === title ? { ...s, skills: updatedSkills } : s
       ),
     }));
   };
 
-  const addSkill = (title) => {
-    setResumeData((prevData) => {
-      const skillType = prevData.skills.find(
-        (skillType) => skillType.title === title
-      );
-      const newSkills = [...skillType.skills, ""];
-      const updatedSkills = prevData.skills.map((skill) =>
-        skill.title === title ? { ...skill, skills: newSkills } : skill
-      );
-      return {
-        ...prevData,
-        skills: updatedSkills,
-      };
-    });
+  const addSkill = () => {
+    setResumeData((prev) => ({
+      ...prev,
+      skills: prev.skills.map((s) =>
+        s.title === title ? { ...s, skills: [...s.skills, ""] } : s
+      ),
+    }));
   };
 
-  const removeSkill = (title, index) => {
-    setResumeData((prevData) => {
-      const skillType = prevData.skills.find(
-        (skillType) => skillType.title === title
-      );
-      const newSkills = [...skillType.skills];
-      newSkills.pop();
-      const updatedSkills = prevData.skills.map((skill) =>
-        skill.title === title ? { ...skill, skills: newSkills } : skill
-      );
-      return {
-        ...prevData,
-        skills: updatedSkills,
-      };
-    });
+  const removeSkill = () => {
+    setResumeData((prev) => ({
+      ...prev,
+      skills: prev.skills.map((s) =>
+        s.title === title
+          ? { ...s, skills: s.skills.slice(0, -1) }
+          : s
+      ),
+    }));
   };
 
-  const skillType = resumeData.skills.find(
-    (skillType) => skillType.title === title
-  );
+  if (!skillType) return null;
 
   return (
-    <div className="flex-col-gap-2">
-      <h2 className="input-title">{title}</h2>
-      {skillType.skills.map((skill, index) => (
-        <div key={index} className="f-col">
+    <div className="space-y-4 mb-6">
+      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+        {title}
+      </h2>
+
+      <div className="flex flex-wrap gap-2">
+        {skillType.skills.map((skill, index) => (
           <input
+            key={index}
             type="text"
             placeholder={title}
-            name={title}
-            className="w-full other-input"
             value={skill}
-            onChange={(e) => handleSkill(e, index, title)}
+            onChange={(e) => handleSkill(e, index)}
+            className="px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand transition-all duration-150"
           />
-        </div>
-      ))}
+        ))}
+      </div>
+
       <FormButton
         size={skillType.skills.length}
-        add={() => addSkill(title)}
-        remove={() => removeSkill(title)}
+        add={addSkill}
+        remove={removeSkill}
       />
     </div>
   );
