@@ -43,10 +43,6 @@ const Skill = ({ title }) => {
 
   return (
     <div className="space-y-4 mb-6">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-        {title}
-      </h2>
-
       <div className="flex flex-wrap gap-2">
         {skillType.skills.map((skill, index) => (
           <input
@@ -55,7 +51,7 @@ const Skill = ({ title }) => {
             placeholder={title}
             value={skill}
             onChange={(e) => handleSkill(e, index)}
-            className="px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand transition-all duration-150"
+            className="tag-pill"
           />
         ))}
       </div>

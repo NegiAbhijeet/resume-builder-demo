@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    
+
     body {
         @apply font-[sans-serif];
     }
@@ -24,94 +24,101 @@
         @apply bg-gray-700;
     }
 
-    textarea, input:focus {
+    textarea,
+    input:focus {
         @apply focus:outline-none;
     }
 
-    .ul-padding{
+    .ul-padding {
         padding-inline-start: 0.9rem;
     }
 
-    .ul-padding-none{
+    .ul-padding-none {
         padding-inline-start: 0;
     }
 }
 
-@layer components{
-    .pi{
-        @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none transition-all;
+@layer components {
+    .pi {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black/80 font-light focus:ring-2 focus:ring-brand focus:outline-none transition-all;
     }
 
-    .profileInput{
-        @apply pi file:border-0 file:bg-gray-500 file:text-white file:rounded-sm;
+    .tag-pill {
+        @apply px-3 py-1.5 rounded-full border border-gray-300 bg-white text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand transition-all duration-150;
     }
 
-    .flex-col-gap-2{
-        @apply space-y-4 mb-6;
-    }
-
-    .flex-wrap-gap-2{
-        @apply flex flex-col sm:flex-row gap-4;
-    }
-
-    .other-input{
+    .other-input {
         @apply p-2 mb-2 text-black bg-white rounded focus:placeholder-transparent;
     }
 
-    .input-title{
-        @apply text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2;
+    .input-heading {
+        @apply text-base text-black;
     }
 
-    .f-col{
+    .profileInput {
+        @apply pi file:border-0 file:bg-gray-500 file:text-white file:rounded-sm;
+    }
+
+    .flex-col-gap-2 {
+        @apply space-y-4 mb-6;
+    }
+
+    .flex-wrap-gap-2 {
+        @apply flex flex-col sm:flex-row gap-4;
+    }
+
+
+
+    .f-col {
         @apply flex flex-col;
     }
 
-    .grid-4{
+    .grid-4 {
         @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
     }
 
-    .editable{
+    .editable {
         @apply hover:bg-gray-100 hover:cursor-text outline-none;
     }
 
 }
 
-.name{
+.name {
     font-size: 20px;
     font-weight: 700;
 }
 
-.profession{
+.profession {
     font-size: 16px;
     font-weight: 500;
 }
 
-.contact{
+.contact {
     font-size: 14px;
     font-weight: 400;
 }
 
-.social-media{
+.social-media {
     font-size: 12px;
     font-weight: 400;
 }
 
-.section-title{
+.section-title {
     font-size: 16px;
     font-weight: 700;
 }
 
-.content{
+.content {
     font-size: 14px;
     font-weight: 400;
 }
 
-.sub-content{
+.sub-content {
     font-size: 12px;
     font-weight: 400;
 }
 
-.i-bold{
+.i-bold {
     font-weight: 700 !important;
 }
 

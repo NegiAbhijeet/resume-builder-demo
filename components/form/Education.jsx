@@ -30,9 +30,6 @@ const Education = () => {
 
   return (
     <div className="space-y-4 mb-6">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-        Education
-      </h2>
       {resumeData.education.map((edu, index) => (
         <div key={index} className="space-y-4">
           <input
@@ -41,7 +38,7 @@ const Education = () => {
             placeholder="School / University"
             value={edu.school}
             onChange={(e) => handleEducation(e, index)}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+            className="pi"
           />
           <input
             type="text"
@@ -49,7 +46,7 @@ const Education = () => {
             placeholder="Degree / Program"
             value={edu.degree}
             onChange={(e) => handleEducation(e, index)}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+            className="pi"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
@@ -57,14 +54,15 @@ const Education = () => {
               name="startYear"
               value={edu.startYear}
               onChange={(e) => handleEducation(e, index)}
-              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+              className="pi"
             />
             <input
               type="date"
               name="endYear"
               value={edu.endYear}
               onChange={(e) => handleEducation(e, index)}
-              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+              className="pi"
+
             />
           </div>
         </div>

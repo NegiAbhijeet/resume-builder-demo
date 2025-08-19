@@ -37,9 +37,6 @@ const WorkExperience = () => {
 
   return (
     <div className="space-y-4 mb-6">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-        Work Experience
-      </h2>
       {resumeData.workExperience.map((item, index) => (
         <div key={index} className="space-y-4">
           <input
@@ -48,7 +45,7 @@ const WorkExperience = () => {
             placeholder="Company"
             value={item.company}
             onChange={(e) => handleWorkExperience(e, index)}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+            className="pi"
           />
           <input
             type="text"
@@ -56,7 +53,7 @@ const WorkExperience = () => {
             placeholder="Job Title"
             value={item.position}
             onChange={(e) => handleWorkExperience(e, index)}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+            className="pi"
           />
           <textarea
             name="description"
@@ -64,14 +61,14 @@ const WorkExperience = () => {
             value={item.description}
             maxLength={250}
             onChange={(e) => handleWorkExperience(e, index)}
-            className="w-full px-4 py-2 h-32 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white resize-none focus:ring-2 focus:ring-brand focus:outline-none"
+            className="min-h-[140px] resize-none pi"
           />
           <textarea
             name="keyAchievements"
             placeholder="Key Achievements"
             value={item.keyAchievements}
             onChange={(e) => handleWorkExperience(e, index)}
-            className="w-full px-4 py-2 h-40 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white resize-none focus:ring-2 focus:ring-brand focus:outline-none"
+            className="min-h-[140px] resize-none pi"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
@@ -79,14 +76,14 @@ const WorkExperience = () => {
               name="startYear"
               value={item.startYear}
               onChange={(e) => handleWorkExperience(e, index)}
-              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+              className="pi"
             />
             <input
               type="date"
               name="endYear"
               value={item.endYear}
               onChange={(e) => handleWorkExperience(e, index)}
-              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+              className="pi"
             />
           </div>
         </div>

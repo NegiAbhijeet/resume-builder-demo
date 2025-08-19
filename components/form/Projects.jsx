@@ -36,12 +36,8 @@ const Projects = () => {
 
   return (
     <div className="space-y-6 mb-6">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-        Projects
-      </h2>
-
       {resumeData.projects.map((project, index) => (
-        <div key={index} className="flex flex-col gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-md bg-white dark:bg-gray-900 shadow-sm">
+        <div key={index} className="flex flex-col gap-4 p-4 border border-gray-200 rounded-md bg-white shadow-sm">
           <input
             type="text"
             placeholder="Project Title"

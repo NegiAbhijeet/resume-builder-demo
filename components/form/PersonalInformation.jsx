@@ -6,7 +6,6 @@ const PersonalInformation = ({}) => {
 
   return (
     <div className="flex-col-gap-2">
-      <h2 className="input-title">Personal Information</h2>
       <div className="grid-4">
         <input
           type="text"

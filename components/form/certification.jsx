@@ -27,9 +27,6 @@ const Certification = () => {
 
   return (
     <div className="space-y-4 mb-6">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-        Certifications
-      </h2>
       {resumeData[skillType].map((cert, index) => (
         <input
           key={index}
@@ -37,7 +34,7 @@ const Certification = () => {
           placeholder="Certification"
           value={cert}
           onChange={(e) => handleSkills(e, index)}
-          className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand focus:outline-none"
+          className="pi"
         />
       ))}
       <FormButton
