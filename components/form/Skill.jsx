@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ResumeContext } from "../../pages/builder";
-import FormButton from "./FormButton";
+import { MdDelete, MdAdd } from "react-icons/md";
 
 const Skill = ({ title }) => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
@@ -28,13 +28,14 @@ const Skill = ({ title }) => {
     }));
   };
 
-  const removeSkill = () => {
+  const removeSkill = (index) => {
+    const updatedSkills = [...skillType.skills];
+    updatedSkills.splice(index, 1);
+
     setResumeData((prev) => ({
       ...prev,
       skills: prev.skills.map((s) =>
-        s.title === title
-          ? { ...s, skills: s.skills.slice(0, -1) }
-          : s
+        s.title === title ? { ...s, skills: updatedSkills } : s
       ),
     }));
   };
@@ -45,22 +46,38 @@ const Skill = ({ title }) => {
     <div className="space-y-4 mb-6">
       <div className="flex flex-wrap gap-2">
         {skillType.skills.map((skill, index) => (
-          <input
+          <div
             key={index}
-            type="text"
-            placeholder={title}
-            value={skill}
-            onChange={(e) => handleSkill(e, index)}
-            className="tag-pill"
-          />
+            className="relative flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full shadow-sm"
+          >
+            <input
+              type="text"
+              placeholder={title}
+              value={skill}
+              onChange={(e) => handleSkill(e, index)}
+              className="bg-transparent outline-none text-sm"
+            />
+            <button
+              type="button"
+              onClick={() => removeSkill(index)}
+              className="text-red-600 hover:text-red-800"
+              aria-label="Delete Skill"
+            >
+              <MdDelete size={16} />
+            </button>
+          </div>
         ))}
       </div>
 
-      <FormButton
-        size={skillType.skills.length}
-        add={addSkill}
-        remove={removeSkill}
-      />
+      <button
+        type="button"
+        onClick={addSkill}
+        aria-label="Add Skill"
+        className="primary-btn mt-2"
+      >
+        <MdAdd className="text-xl" />
+        <span>Add {skillType.title}</span>
+      </button>
     </div>
   );
 };

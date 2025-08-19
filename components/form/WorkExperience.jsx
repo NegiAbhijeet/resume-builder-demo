@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ResumeContext } from "../../pages/builder";
-import FormButton from "./FormButton";
+import { MdDelete, MdAdd } from "react-icons/md";
 
 const WorkExperience = () => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
@@ -30,15 +30,17 @@ const WorkExperience = () => {
 
   const removeWorkExperience = (index) => {
     const updated = [...resumeData.workExperience];
-    updated[index] = updated[updated.length - 1];
-    updated.pop();
+    updated.splice(index, 1);
     setResumeData({ ...resumeData, workExperience: updated });
   };
 
   return (
-    <div className="space-y-4 mb-6">
+    <div className="space-y-6 mb-6">
       {resumeData.workExperience.map((item, index) => (
-        <div key={index} className="space-y-4">
+        <div
+          key={index}
+          className="relative border p-4 rounded bg-gray-50 space-y-4 shadow-sm"
+        >
           <input
             type="text"
             name="company"
@@ -86,13 +88,28 @@ const WorkExperience = () => {
               className="pi"
             />
           </div>
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => removeWorkExperience(index)}
+              aria-label="Delete Work Experience"
+              className="p-2 bg-red-600 hover:bg-red-700 text-white rounded"
+            >
+              <MdDelete className="text-lg" />
+            </button>
+          </div>
         </div>
       ))}
-      <FormButton
-        size={resumeData.workExperience.length}
-        add={addWorkExperience}
-        remove={removeWorkExperience}
-      />
+
+      <button
+        type="button"
+        onClick={addWorkExperience}
+        aria-label="Add Work Experience"
+        className="primary-btn"
+      >
+        <MdAdd className="text-xl" />
+        <span>Add Work Experience</span>
+      </button>
     </div>
   );
 };

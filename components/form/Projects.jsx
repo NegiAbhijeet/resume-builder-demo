@@ -1,14 +1,14 @@
-import FormButton from "./FormButton";
 import React, { useContext } from "react";
 import { ResumeContext } from "../../pages/builder";
+import { MdDelete, MdAdd } from "react-icons/md";
 
 const Projects = () => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
 
   const handleProjects = (e, index) => {
-    const newProjects = [...resumeData.projects];
-    newProjects[index][e.target.name] = e.target.value;
-    setResumeData({ ...resumeData, projects: newProjects });
+    const updated = [...resumeData.projects];
+    updated[index][e.target.name] = e.target.value;
+    setResumeData({ ...resumeData, projects: updated });
   };
 
   const addProjects = () => {
@@ -28,73 +28,90 @@ const Projects = () => {
     });
   };
 
-  const removeProjects = () => {
+  const removeProjects = (index) => {
     const updated = [...resumeData.projects];
-    updated.pop();
+    updated.splice(index, 1);
     setResumeData({ ...resumeData, projects: updated });
   };
 
   return (
-    <div className="space-y-6 mb-6">
+    <div className="space-y-4 mb-6">
       {resumeData.projects.map((project, index) => (
-        <div key={index} className="flex flex-col gap-4 p-4 border border-gray-200 rounded-md bg-white shadow-sm">
-          <input
-            type="text"
-            placeholder="Project Title"
-            name="title"
-            className="pi"
-            value={project.title}
-            onChange={(e) => handleProjects(e, index)}
-          />
-          <input
-            type="text"
-            placeholder="Project Link"
-            name="link"
-            className="pi"
-            value={project.link}
-            onChange={(e) => handleProjects(e, index)}
-          />
+        <div
+          key={index}
+          className="relative border p-4 space-y-4 rounded bg-gray-50"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="title"
+              placeholder="Project Title"
+              value={project.title}
+              onChange={(e) => handleProjects(e, index)}
+              className="pi"
+            />
+            <input
+              type="text"
+              name="link"
+              placeholder="Project Link"
+              value={project.link}
+              onChange={(e) => handleProjects(e, index)}
+              className="pi"
+            />
+          </div>
           <textarea
-            placeholder="Description"
             name="description"
-            className="pi h-28"
+            placeholder="Description"
             value={project.description}
-            maxLength="250"
             onChange={(e) => handleProjects(e, index)}
+            className="pi h-28 w-full"
+            maxLength={250}
           />
           <textarea
-            placeholder="Key Achievements"
             name="keyAchievements"
-            className="pi h-32"
+            placeholder="Key Achievements"
             value={project.keyAchievements}
             onChange={(e) => handleProjects(e, index)}
+            className="pi h-32 w-full"
           />
-          <div className="flex gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
               type="date"
-              placeholder="Start Date"
               name="startYear"
-              className="pi"
               value={project.startYear}
               onChange={(e) => handleProjects(e, index)}
+              className="pi"
             />
             <input
               type="date"
-              placeholder="End Date"
               name="endYear"
-              className="pi"
               value={project.endYear}
               onChange={(e) => handleProjects(e, index)}
+              className="pi"
             />
+          </div>
+          <div className="flex w-full justify-end">
+            <button
+              type="button"
+              onClick={() => removeProjects(index)}
+              aria-label="Delete Project"
+              className="p-2 bg-red-600 hover:bg-red-700 text-white rounded"
+            >
+              <MdDelete className="text-lg" />
+            </button>
           </div>
         </div>
       ))}
 
-      <FormButton
-        size={resumeData.projects.length}
-        add={addProjects}
-        remove={removeProjects}
-      />
+      <button
+        type="button"
+        onClick={addProjects}
+        aria-label="Add Project"
+        className="primary-btn"
+      >
+        <MdAdd className="text-xl" />
+        <span>Add Project</span>
+      </button>
     </div>
   );
 };

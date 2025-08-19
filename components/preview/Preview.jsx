@@ -139,7 +139,7 @@ const Preview = () => {
   useKeyboardShortcut('u', true, toggleUnderline);
 
   return (
-    <div className="w-full sticky top-0 preview rm-padding-print p-6 md:overflow-y-scroll md:h-screen">
+    <div className="w-full sticky top-0 preview rm-padding-print p-6">
       <A4PageWrapper>
         <HighlightMenu
           styles={{

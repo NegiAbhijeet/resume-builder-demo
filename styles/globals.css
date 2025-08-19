@@ -51,6 +51,11 @@
         @apply p-2 mb-2 text-black bg-white rounded focus:placeholder-transparent;
     }
 
+    .primary-btn {
+        @apply flex items-center gap-2 text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded mt-4;
+    }
+
+
     .input-heading {
         @apply text-base text-black;
     }

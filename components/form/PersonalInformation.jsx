@@ -5,7 +5,7 @@ const PersonalInformation = ({}) => {
     useContext(ResumeContext);
 
   return (
-    <div className="flex-col-gap-2">
+    <div className="space-y-4 mb-6">
       <div className="grid-4">
         <input
           type="text"
